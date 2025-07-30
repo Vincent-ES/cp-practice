@@ -18,5 +18,7 @@ int main(){
 
         else
             cout<<"=";
+
+        cout<<"\n";
     }
 }
