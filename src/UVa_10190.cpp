@@ -8,7 +8,7 @@ int main()
     {
         if (m == 1 || m == 0)
         {
-            cout << "Boring!";
+            cout << "Boring!" << '\n';
             continue;
         }
 
