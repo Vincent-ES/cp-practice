@@ -21,14 +21,14 @@ int main()
         }
 
         bool sym = true;
-        for (int r = 0; r < (n / 2) + 1; r++)
+        for (int r = 0; r < n; r++)
         {
             for (int x = 0; x < n; x++)
             {
                 if (!sym)
                     break;
 
-                if (arr[r][c] < 0 || arr[r][x] != arr[n - r - 1][n - x - 1])
+                if (arr[r][x] < 0 || arr[r][x] != arr[n - r - 1][n - x - 1])
                     sym = false;
             }
         }
