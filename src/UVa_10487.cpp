@@ -1,48 +1,54 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int a[1005];
 
 int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int n, m, x, Case = 1;
-    while (cin >> n)
+    int n, m, x, count = 1;
+    while (cin >> n && n)
     {
-        if (n == 0)
-            break;
-
+        int arr[n];
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
+            cin >> arr[i];
         }
-        sort(a, a + n);
+        sort(arr, arr + n);
 
-        cout << "Case " << Case++ << ":\n";
+        cout << "Case " << count << ":\n";
         cin >> m;
-        while (m--)
+        int que[m];
+        for (int i = 0; i < m; i++)
         {
-            cin >> x;
-            int ans = a[0] + a[1];
-            int delta = abs(ans - x);
+            cin >> que[i];
+        }
+
+        for (int k = 0; k < m; k++)
+        {
+            int delta = que[k] - (arr[0] + arr[1]);
             for (int i = 0; i < n; i++)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    if (abs(a[i] + a[j] - x) < delta)
+                    x = arr[i] + arr[j];
+                    if (abs(delta) > abs(que[k] - x))
                     {
-                        ans = a[i] + a[j];
-                        delta = abs(a[i] + a[j] - x);
-                    }
-                    else if (a[i] + a[j] - x > delta)
-                    {
-                        break;
+                        delta = que[k] - x;
                     }
                 }
+                if (delta == 0)
+                {
+                    break;
+                }
+                if (arr[i] > que[k])
+                {
+                    break;
+                }
             }
-            cout << "Closest sum to " << x << " is " << ans << ".\n";
+            cout << "Closest sum to " << que[k] << " is " << que[k] - delta << '.';
+            cout << '\n';
         }
+        count++;
     }
-    return 0;
 }
